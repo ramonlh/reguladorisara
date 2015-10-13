@@ -210,10 +210,9 @@ volatile int ninter=0;
 
 byte modo=0;
 /********* IMPORTANTE  *****************/
-const byte valorpin[2] = {0,1};    // directo 0=LOW,  1=HIGH    placa Ramon
-//const byte valorpin[2] = {1,0};    // 2  inverso 1=LOW,  0=HIGH    estandar para placa Pozuelo
+//const byte valorpin[2] = {0,1};    // directo 0=LOW,  1=HIGH    placa  placa Pozuelo
+const byte valorpin[2] = {1,0};    // 2  inverso 1=LOW,  0=HIGH    placa Ramón (Gar
 /********* IMPORTANTE  *****************/
-const byte reversepin[2] = {1,0};  // 2  inverso 1=LOW,  0=HIGH    
 const int buffLEN = 128;   // 2 tamaño buffer para webserver.processConnection
 
 int minRam = 8000;        // 2
@@ -4461,12 +4460,12 @@ void leevaloresOW()
     {
     Mb.R[i]=sensors1.getTempC(addr1Wire[i])*100;
     }
-  isST1=Mb.R[0]/100;
-  isST2=Mb.R[1]/100;
-  isST3=Mb.R[2]/100;
-  isST4=Mb.R[3]/100;
-  isST5=Mb.R[4]/100;
-  isST6=Mb.R[5]/100;
+  if ((Mb.R[0]/100 <= 50) && (Mb.R[0]/100 >= 10)) isST1=Mb.R[0]/100;
+  if ((Mb.R[1]/100 <= 50) && (Mb.R[1]/100 >= 10)) isST2=Mb.R[1]/100;
+  if ((Mb.R[2]/100 <= 50) && (Mb.R[2]/100 >= 10)) isST3=Mb.R[2]/100;
+  if ((Mb.R[3]/100 <= 50) && (Mb.R[3]/100 >= 10)) isST4=Mb.R[3]/100;
+  if ((Mb.R[4]/100 <= 50) && (Mb.R[4]/100 >= 10)) isST5=Mb.R[4]/100;
+  if ((Mb.R[5]/100 <= 50) && (Mb.R[5]/100 >= 10)) isST6=Mb.R[5]/100;
   }
 
 void webclientHTML(WebServer &server, WebServer::ConnectionType type, char *url_tail, bool tail_complete)
